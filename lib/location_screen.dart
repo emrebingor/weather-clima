@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_climate_flutter_app/constants.dart';
+import 'package:weather_climate_flutter_app/weather.dart';
 import 'constants.dart';
 
 class LocationScreen extends StatefulWidget {
@@ -12,6 +13,39 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+
+  WeatherModel weather = WeatherModel();
+
+  int? temperature;
+  String? cityName;
+  String? weatherMessage;
+  String? weatherIcon;
+
+
+  @override
+  void initState(){
+    super.initState();
+    updateUI(widget.locationWeather);
+  }
+
+
+
+  void updateUI(dynamic weatherData) {
+    if (weatherData == null){
+      temperature = 0;
+      cityName = 'Not available';
+      weatherMessage = 'Error!';
+      weatherIcon = 'No Icon';
+    }
+    double temp = weatherData['main']['temp'];
+    temperature = temp.toInt();
+    cityName = weatherData['name'];
+    weatherMessage = weather.getMessage(temperature ?? 0);
+    var condition = weatherData['weather'][0]['id'];
+    weatherIcon = weather.getWeatherIcon(condition);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
