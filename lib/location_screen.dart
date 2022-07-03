@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_climate_flutter_app/constants.dart';
 import 'package:weather_climate_flutter_app/weather.dart';
+import 'city_screen.dart';
 import 'constants.dart';
 
 class LocationScreen extends StatefulWidget {
@@ -68,14 +69,20 @@ class _LocationScreenState extends State<LocationScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    var weatherData = await weather.getLocationWeather();
+
+                    return weatherData;
+                  },
                   child: Icon(
                     Icons.near_me,
                     size: 50.0,
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CityScreen(),),);
+                  },
                   child: Icon(
                     Icons.location_city,
                     size: 50.0,
@@ -87,15 +94,15 @@ class _LocationScreenState extends State<LocationScreen> {
               padding: EdgeInsets.only(left: 15.0),
               child: Row(
                 children: <Widget>[
-                  Text('15°', style: kTemperatureTextStyle),
-                  Text('w', style: kCommentTextStyle),
+                  Text('$temperature °', style: kTemperatureTextStyle),
+                  Text('$weatherIcon', style: kCommentTextStyle),
                 ],
               ),
             ),
             Padding(
               padding: EdgeInsets.only(right: 15.0),
               child: Text(
-                'Weather in Istanbul',
+                '$weatherMessage in $cityName',
                 textAlign: TextAlign.right,
                 style: kWeatherinCity,
               ),
