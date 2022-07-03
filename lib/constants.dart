@@ -11,3 +11,5 @@ const kWeatherinCity = TextStyle(
   fontFamily: 'Spartan MB',
   fontSize: 60.0,
 );
+
+const kButtonStyle = TextStyle(fontFamily: 'Spartan MB', fontSize: 30.0);
