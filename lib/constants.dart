@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 const kTemperatureTextStyle =
-    TextStyle(fontSize: 100.0, fontFamily: 'Spartan MB');
+    TextStyle(fontSize: 80.0, fontFamily: 'Spartan MB');
 
 const kCommentTextStyle = TextStyle(
-  fontSize: 100.0,
+  fontSize: 80.0,
 );
 
 const kWeatherinCity = TextStyle(
